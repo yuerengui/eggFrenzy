@@ -14,43 +14,111 @@
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="public/css/eggFrenzy.css">
     <script type="text/javascript" src="public/js/jquery.min.js"></script> 
-    <script type="text/javascript" src="public/js/scroll.js"></script> 
     <script type="text/javascript" charset="utf-8" src="public/js/eggFrenzy.js"></script>
-    <script type="text/javascript" charset="utf-8" src="public/js/jquery-ui.js"></script> 
+    <script type="text/javascript" charset="utf-8" src="public/js/jquery-ui.js"></script>
+    <script type="text/javascript" charset="utf-8" src="public/js/jquery-ui.js"></script>
     <script>
         $(function(){ 
             //初始化参数  animationCount:动画执行次数
             //           prizeItemList:奖品  url为奖品项目图片名，link奖品跳转的连接
             //           prizeItemList[0] 表示未中奖，后面是奖品
-            var option = {  
-                            "lastCount":8,
-                            "animationCount":3,
-                            "prizeItemList":[
-                                {"name":"未中奖","url":"jp0.png","link":"#"},
-                                {"name":"10元话费","url":"tc1.png","link":"https://www.licaifan.com/index.php/site/promotion/?refer=753 "},
-                                {"name":"200元支付宝红包","url":"tc2.png","link":"http://m.xiangshang360.com/wap/regist/landingpage?source=ceshi1"},
-                                {"name":"100元支付宝红包","url":"tc3.png","link":"https://m.we.com/mo/lp/lp/depository?utmSource=wap-bd-tdb"},
-                                {"name":"1元支付宝红包","url":"tc4.png","link":"https://www.zyxr.com/wapactivity/activity/activityKuayear.html?chl=ryt"},
-                                {"name":"88元话费","url":"tc5.png","link":"https://m.xueshandai.com/landing-page/landing-progress?sid=ytws"},
-                                {"name":"Kindle","url":"tc6.png","link":"http://www.miaoqian.com/register/regwap.html?channelCategory=ayd"},
-                                {"name":"1G流量","url":"tc7.png","link":"http://m.haochedai.com/hcd113/index.html"},
-                                {"name":"10G流量","url":"tc8.png","link":"https://www.51rz.com/ind/wx/tg/register.html?channel=wap-ytws1"}
-                            ]
-                        };
+            $.getJSON('./rewards.json', function(data) {
+                var e = new EggPlugin(data);
+                var rewardsList = data.prizeItemList;
+                var rewardsDescriptionHtml = ''
+                var rewardsContentHtml = ''
+                $.each(rewardsList, function(index, item) {
+                    rewardsDescriptionHtml+= `<span class="egg-_red">${item.highlight}: </span>${item.name}<br/>`
+                    rewardsContentHtml += 
+                    `<li>
+                        <div class="eggFrenzy_sec21_d">
+                            <a href="#"><img src="public/images/jp_common.png"></a>
+                        </div>
+                        <p class="eggFrenzy_sec21_p">${item.name}</p>
+                    </li>`
+                })
+                $('.egg-list-on-description').html(rewardsDescriptionHtml)
+                $('.egg-list-on-content').html(rewardsContentHtml)
+                //绑定抽奖
+                $('.eggFrenzy_sec12_egg1 ul li').on('click',function(){
+                    e.Init($(this));
+                });
 
-            var e = new EggPlugin(option);
-            //绑定抽奖
-            $('.eggFrenzy_sec12_egg1 ul li').on('click',function(){
-                e.Init($(this));
-            }); 
+                setTimeout(() => {
+                    // 滚动
+                    var temp1 = $(".eggFrenzy_sec21_con");
+                    var temp2 = $(".eggFrenzy_sec21_con ul");
+                    temp1.height(temp2.height());
+                    var lenth0 = temp1.width();
+                    var lenth1 = temp2.children("li").length;
+                    var width1 = temp2.children("li").width();
+                    var width2 = lenth1 * width1;
+                    var width3 = (lenth1 - 4) * width1;
+                    //产品左右滑动
+                    var timer = setInterval(setTimerM, 1000 * 4);
+
+                    function setTimerM() {
+                        changeSite();
+                    }
+
+                    temp2.mouseover(function() {
+                        clearInterval(timer);
+                    });
+                    temp2.mouseleave(function() {
+                        timer = setInterval(setTimerM, 1000 * 4);
+
+                    });
+
+                    function changeSite() {
+                        var sub01 = temp2.css('left');
+                        var sub02 = sub01.substring(0, sub01.length - 2);
+                        if (!temp2.is(":animated")) {
+                            if (sub02 <= -width3) {
+                                temp2.animate({
+                                    left: '0px'
+                                }, 1000);
+                            } else {
+                                temp2.animate({
+                                    left: '-=' + width1
+                                }, 1000);
+                            }
+                        }
+                    }
+                }, 500)
+            })
         });
     </script>
 </head>
 <body>
     <header id="eggFrenzy_header"><img src="public/images/header.png">
     <a id="imglink" href="javascript:void(0);"><img id="eggFrenzy_header_j" src="public/images/title.png"></a></header>
+    <section id="eggFrenzy_sec3">
+        <div class="eggFrenzy_sec31"><img src="public/images/tw1.png"></div>
+        <div class="eggFrenzy_sec32">
+            <div class="eggFrenzy_sec321">
+                <img src="public/images/tt1.png">
+                <span class="egg-font">活动规则</span>
+                <img src="public/images/tt2.png">
+            </div>
+            <div class="eggFrenzy_sec322">
+                <!-- <p class="egg-font1">努力了一年，领个红包犒劳一下自己吧~</p> -->
+                <p class="egg-font1">购物满200即可参与抽奖，参与活动即有机会获得<span class="egg-_red">丰厚奖品</span></p>
+                <p class="egg-font2" style="color:red;">此活动为100%中奖</p>
+                <!-- <p class="egg-font1 egg-list-on-description"></p> -->
+                <!-- <p class="egg-font1">重要声明：<br>
+                    1、实物类奖品将在活动结束后5-10个工作日安排发货，请耐心等待。<br>
+                    2、优惠券类奖品的使用规则详见每个优惠券的介绍页。<br>
+                    3、请兑换后仔细阅读使用流程，如有疑问，可直接联系客服专线：400-006-6855或客服QQ：4000066855（工作日9:00至18:00）。<br>
+                    4、通过非法途径获得奖品的，主办方有权不提供奖品。
+                </p> -->
+            </div>
+            
+        </div>
+        <div class="eggFrenzy_sec31"><img src="public/images/tw3.png"></div>
+    </section>
     <section id="eggFrenzy_sec1">
-        <p class="text_center eggFrenzy_sec11"><span class="eggeggFrenzy_sec1_tips">今日剩余<span id="eggC">0</span>次免费机会</span></p>
+        <!-- <p class="text_center eggFrenzy_sec11"><span class="eggeggFrenzy_sec1_tips">今日剩余<span id="eggC">0</span>次免费机会</span></p> -->
+        <!-- <p class="text_center eggFrenzy_sec11"><span class="eggeggFrenzy_sec1_tips">谢谢回顾</p> -->
         <div class="eggFrenzy_sec12">
             <div class="eggFrenzy_sec12_egg1">
                 <ul class="float_left">
@@ -77,57 +145,10 @@
         <div class="eggFrenzy_sec21">
             <img class="eggFrenzy_sec21_title float_left" src="public/images/jp.png">
             <div class="float_left eggFrenzy_sec21_con">
-                <ul>
-                    <li>
-                        <div class="eggFrenzy_sec21_d">
-                            <a href="https://www.licaifan.com/index.php/site/promotion/?refer=753   "><img src="public/images/jp1.png"></a>
-                        </div>
-                        <p class="eggFrenzy_sec21_p">10元话费</p>
-                    </li>
-                    <li>
-                        <div class="eggFrenzy_sec21_d">
-                            <a href="http://m.xiangshang360.com/wap/regist/landingpage?source=ceshi1"><img src="public/images/jp2.png"></a>
-                        </div>
-                        <p class="eggFrenzy_sec21_p">200元红包</p>
-                    </li>
-                    <li>
-                        <div class="eggFrenzy_sec21_d">
-                            <a href="https://m.we.com/mo/lp/lp/depository?utmSource=wap-bd-tdb"><img src="public/images/jp3.png"></a>
-                        </div>
-                        <p class="eggFrenzy_sec21_p">100元红包</p>
-                    </li>
-                    <li>
-                        <div class="eggFrenzy_sec21_d">
-                            <a href="https://www.zyxr.com/wapactivity/activity/activityKuayear.html?chl=ryt"><img src="public/images/jp4.png"></a>
-                        </div>
-                        <p class="eggFrenzy_sec21_p">1元红包</p>
-                    </li>
-                    <li>
-                        <div class="eggFrenzy_sec21_d">
-                            <a href="https://m.xueshandai.com/landing-page/landing-progress?sid=ytws"><img src="public/images/jp5.png"></a>
-                        </div>
-                        <p class="eggFrenzy_sec21_p">88元话费</p>
-                    </li>
-                    <li>
-                        <div class="eggFrenzy_sec21_d">
-                            <a href="http://www.miaoqian.com/register/regwap.html?channelCategory=ayd"><img src="public/images/jp6.png"></a>
-                        </div>
-                        <p class="eggFrenzy_sec21_p">kindle</p>
-                    </li>
-                    <li>
-                        <div class="eggFrenzy_sec21_d">
-                            <a href="http://m.haochedai.com/hcd113/index.html"><img src="public/images/jp7.png"></a>
-                        </div>
-                        <p class="eggFrenzy_sec21_p">1G流量</p>
-                    </li>
-                    <li>
-                        <div class="eggFrenzy_sec21_d">
-                            <a href=""><img src="public/images/jp8.png"></a>
-                        </div>
-                        <p class="eggFrenzy_sec21_p">10G流量</p>
-                    </li>
+                <ul class="egg-list-on-content">
                 </ul>
                 <div class="clear"></div>
+                
             </div>
             <div class="clear"></div>
         </div>
@@ -135,43 +156,6 @@
             <div class="eggFrenzy_sec22-d1">
                 <div class="eggFrenzy_sec22-d2"></div>
             </div>
-        </div>
-    </section>
-    <section id="eggFrenzy_sec3">
-        <div class="eggFrenzy_sec31"><img src="public/images/tw1.png"></div>
-        <div class="eggFrenzy_sec32">
-            <div class="eggFrenzy_sec321">
-                <img src="public/images/tt1.png">
-                <span class="egg-font">活动规则</span>
-                <img src="public/images/tt2.png">
-            </div>
-            <div class="eggFrenzy_sec322">
-                <p class="egg-font1">努力了一年，领个红包犒劳一下自己吧~</p>
-                <p class="egg-font1">参与活动即有机会获得<span class="egg-_red">幸运奖</span>~每天可参与<span class="egg-_red">8</span>次，8次抽奖机会免费。</p>
-                <p class="egg-font2">(此活动为概率中奖，奖品数量有限，祝您好运！)</p>
-                <p class="egg-font1"><span class="egg-_red">惊喜一：</span>200元支付宝红包<br>
-                    <span class="egg-_red">惊喜二：</span>100元支付宝红包<br>
-                    <span class="egg-_red">惊喜三：</span>10元话费<br>
-                    <span class="egg-_red">惊喜四：</span>1元支付宝红包<br>
-                    <span class="egg-_red">惊喜五：</span>幸运奖
-                </p>
-                <p class="egg-font1">重要声明：<br>
-                    1、实物类奖品将在活动结束后5-10个工作日安排发货，请耐心等待。<br>
-                    2、优惠券类奖品的使用规则详见每个优惠券的介绍页。<br>
-                    3、请兑换后仔细阅读使用流程，如有疑问，可直接联系客服专线：400-006-6855或客服QQ：4000066855（工作日9:00至18:00）。<br>
-                    4、通过非法途径获得奖品的，主办方有权不提供奖品。
-                </p>
-            </div>
-            
-        </div>
-        <div class="eggFrenzy_sec31"><img src="public/images/tw3.png"></div>
-    </section>
-    <section id="eggFrenzy_sec4">
-        <div class="eggFrenzy_sec41">
-            <img src="public/images/more.png">
-        </div>
-        <div class="eggFrenzy_sec42">
-            <a href="https://engine.tuia.cn/index/activity?appKey=2JhNotkPaToVPDp41UzdsfkLRz5v&adslotId=322"><img src="public/images/footer.png"></a>
         </div>
     </section>
 </body>

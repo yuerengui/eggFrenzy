@@ -1,0 +1,41 @@
+{
+  "lastCount": 8,
+  "animationCount": 3,
+  "prizeItemList": [{
+      "highlight": "惊喜1",
+      "name": "奖励1",
+      "url": "jp_common.png",
+      "link": "javascript:;"
+    },
+    {
+      "highlight": "惊喜2",
+      "name": "奖励2",
+      "url": "jp_common.png",
+      "link": "javascript:;"
+    },
+    {
+      "highlight": "惊喜3",
+      "name": "奖励3",
+      "url": "jp_common.png",
+      "link": "javascript:;"
+    },
+    {
+      "highlight": "惊喜4",
+      "name": "奖励4",
+      "url": "jp_common.png",
+      "link": "javascript:;"
+    },
+    {
+      "highlight": "惊喜5",
+      "name": "奖励5",
+      "url": "jp_common.png",
+      "link": "javascript:;"
+    },
+    {
+      "highlight": "惊喜6",
+      "name": "奖励6",
+      "url": "jp_common.png",
+      "link": "javascript:;"
+    }
+  ]
+}

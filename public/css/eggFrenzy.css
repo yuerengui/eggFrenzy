@@ -49,7 +49,8 @@
     width: 90%;
 }
 .eggFrenzy_sec12_egg1 {
-    margin: 20px 0 10px 0;
+    margin: 0px 0 10px 0;
+    padding-top: 20px;
 }
 .eggFrenzy_sec13 {
     font-size: 18px;
@@ -71,12 +72,12 @@
 .eggFrenzy_sec21 ul {
     width: 200%;
     position: absolute;
-    left: 0;
-    display: inline;
+    left: 0px;
+    top: 0px;
+    display: block;
     float: left;
 }
 .eggFrenzy_sec21 ul>li {
-    display: inline;
     float: left;
     width: 12.5%;
 }
@@ -249,7 +250,7 @@
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     z-index: 10001; 
-} 
+}
 .pop-cj .close {
     width: 75px;
     height: 75px;
@@ -258,6 +259,17 @@
     right: -7px;
     top: -10px;
 } 
+.pop-cj .close::before{
+    width: 50px;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+    color: black;
+    height: 30px;
+    content: "关闭";
+    background: rgba(255, 255, 255, 0.7);
+}
  
 .pop-cj .imgDan {
     position: absolute;

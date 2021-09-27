@@ -8,7 +8,9 @@ html {
 }
 body {
     position: relative;
-    -webkit-tap-highlight-color:rgba(0,0,0,0)
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    background: #fec487;
+    min-height: 100vh;
 }
 header,nav,article,section,aside,footer{display:block;}
 body, button, input, select, textarea {

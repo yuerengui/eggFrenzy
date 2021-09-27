@@ -3,9 +3,8 @@
     var animationCount = option.animationCount;
     var _this = this;
     var eggCount = option.lastCount; //奖励个数
-    var preResult = false; //上一次结果是否中奖 
     var isRun = false;
-    var programIndex = 0; //砸蛋逻辑 
+    // var programIndex = 0; //砸蛋逻辑 
 
     _this.Init = function(document) {
         //if (isRun || !document.hasClass("action") || eggCount <= 0) return; //等待上一个砸完才能再砸 ||  已经砸过的不能砸 || 数量没了不能砸
@@ -31,12 +30,10 @@
                 //业务逻辑处理
                 clearInterval(timer); //停止动画
 
-                prizeIndex = getRandomNum(1);
-
+                prizeIndex = getRandomNum(0, prizeItemList.length - 1);
                 doc[0].src = 'public/images/egg0.png';
             
                 doJinDanResult(prizeIndex);
-                console.log("p=" + programIndex + "  i=" + prizeIndex);
             }
             num++;
         }, 200);
@@ -49,12 +46,7 @@
     editEggCountPage = function() {
         // $('#eggC')[0].innerText = eggCount; //修改页面 
     }
-    // 参数 0 未中奖  
-    // 参数 1-8 对应1到8的奖品
     doJinDanResult = function(index) {
-        if (index > 0) { //中奖了
-            preResult = true;
-        }
         clickJinDanView(index); //弹窗结果 
     }
 
@@ -66,35 +58,21 @@
         str += '<img class ="link" src="public/images/';
         str += prizeItemList[index].url;
         str += '" alt="结果">';
-        str += `<div style="font-weight:700;color: white;text-align:center;">${prizeItemList[index].name}</div>`
+        str += `<div style="font-weight:700;color: white;text-align:center;font-size: 40px;">${prizeItemList[index].name}</div>`
         str += '</div>';
         //禁用滚动条
         disableScrool(true);
-        $("#imglink").attr("href","prizeResult.html");
         $('body').append(str);
-
-        if(index > 0)
-        {
-            $('.pop-cj .link').bind('click', function() {
-                location.href = prizeItemList[index].link;
-            });
-        }
-        
-        //10秒后关闭
-        //setTimeout(closePop, 10000);
 
         //绑定关闭抽奖结果按钮
         $('.pop-cj .close').bind('click', '.close', closePop);
     }
 
     //获取随机数
-    getRandomNum = function(isMoreZero) {
-        totalCountDividedByTen = option.prizeItemList.length/10
-        var Rand = Math.random();
-        if (Rand > totalCountDividedByTen) {
-            Rand = 1 - Rand;
-        }
-        return Math.round(Rand * 10);
+    getRandomNum = function(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     //是否禁用页面滚动（包括移动端）
@@ -117,5 +95,5 @@
         //根据参数修改页面数据
         //eggCount = 0;
     editEggCountPage();
-    programIndex = getRandomNum();
+    // programIndex = getRandomNum();
 }

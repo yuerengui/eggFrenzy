@@ -22,7 +22,7 @@
             //初始化参数  animationCount:动画执行次数
             //           prizeItemList:奖品  url为奖品项目图片名，link奖品跳转的连接
             //           prizeItemList[0] 表示未中奖，后面是奖品
-            $.getJSON('./rewards.json', function(data) {
+            $.getJSON('https://mock.yonyoucloud.com/mock/19856/rewards', function(data) {
                 var e = new EggPlugin(data);
                 var rewardsList = data.prizeItemList;
                 var rewardsDescriptionHtml = ''
@@ -90,8 +90,7 @@
     </script>
 </head>
 <body>
-    <header id="eggFrenzy_header"><img src="public/images/header.png">
-    <a id="imglink" href="javascript:void(0);"><img id="eggFrenzy_header_j" src="public/images/title.png"></a></header>
+    <header id="eggFrenzy_header">
     <section id="eggFrenzy_sec3">
         <div class="eggFrenzy_sec31"><img src="public/images/tw1.png"></div>
         <div class="eggFrenzy_sec32">
@@ -118,7 +117,6 @@
     </section>
     <section id="eggFrenzy_sec1">
         <!-- <p class="text_center eggFrenzy_sec11"><span class="eggeggFrenzy_sec1_tips">今日剩余<span id="eggC">0</span>次免费机会</span></p> -->
-        <!-- <p class="text_center eggFrenzy_sec11"><span class="eggeggFrenzy_sec1_tips">谢谢回顾</p> -->
         <div class="eggFrenzy_sec12">
             <div class="eggFrenzy_sec12_egg1">
                 <ul class="float_left">
@@ -129,17 +127,8 @@
                 </ul>
                 <div class="clear"></div>
             </div>
-            <div class="eggFrenzy_sec12_egg1">
-                <ul class="float_left">
-                    <li class="action"><img src="public/images/egg0.png"></li>
-                    <li class="action"><img src="public/images/egg0.png"></li>
-                    <li class="action"><img src="public/images/egg0.png"></li>
-                    <li class="action"><img src="public/images/egg0.png"></li>
-                </ul>
-                <div class="clear"></div>
-            </div>
         </div>
-        <p class="eggFrenzy_sec13">免费抽奖</p>
+        <p class="text_center eggFrenzy_sec11" style="padding: 10px 0px;"><span class="eggeggFrenzy_sec1_tips">免费抽奖</p>
     </section>
     <section id="eggFrenzy_sec2">
         <div class="eggFrenzy_sec21">

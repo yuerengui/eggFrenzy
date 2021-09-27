@@ -10,9 +10,10 @@
     width: 16%!important;
 }
 #eggFrenzy_header {
-    width: 100%;
+    max-width: 900px;
     position: relative;
     z-index: 100;
+    margin: 0 auto;
 }
 #eggFrenzy_header>img {
     width: 100%;
@@ -49,8 +50,9 @@
     width: 90%;
 }
 .eggFrenzy_sec12_egg1 {
-    margin: 0px 0 10px 0;
+    margin: 0px auto;
     padding-top: 20px;
+    max-width: 700px;
 }
 .eggFrenzy_sec13 {
     font-size: 18px;
@@ -240,7 +242,10 @@
 }
 
 .pop-cj {
-    width: 80%;
+    max-width: 500px;
+    font-weight:700;
+    color: white;
+    text-align:center;
     display: block;
     position: fixed;
      top: 50%;

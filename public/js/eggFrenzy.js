@@ -29,7 +29,7 @@
             if (count == 0) {
                 //业务逻辑处理
                 clearInterval(timer); //停止动画
-                var rewardProbability = [1, 5, 10, 15, 20, 20, 20];
+                var rewardProbability = [0.5, 1, 1.5, 2, 5, 10, 80];
                 rewardProbability = rewardProbability.slice(0, prizeItemList.length)
                 for (var i = 0; i <= prizeItemList.length - 1; i++) {
                     var rewardRemainCount = localStorage.getItem('reward_remain_' + i);

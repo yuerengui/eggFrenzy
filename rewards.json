@@ -2,28 +2,39 @@
   "lastCount": 8,
   "animationCount": 1,
   "prizeItemList": [{
-      "name": "奖励1",
-      "url": "jp_common.png"
+      "name": "精品毛绒玩具",
+      "url": "jp_common.png",
+      "count": 4
     },
     {
-      "name": "奖励2",
-      "url": "jp_common.png"
+      "name": "精美保温杯",
+      "url": "jp_common.png",
+      "count": 5
     },
     {
-      "name": "奖励3",
-      "url": "jp_common.png"
+      "name": "盒装精品玩具",
+      "url": "jp_common.png",
+      "count": 30
     },
     {
-      "name": "奖励4",
-      "url": "jp_common.png"
+      "name": "精品包包<br/>浴巾套装",
+      "url": "jp_common.png",
+      "count": 25
     },
     {
-      "name": "奖励5",
-      "url": "jp_common.png"
+      "name": "干湿两用洗脸巾<br/>小浣熊牛奶面霜",
+      "url": "jp_common.png",
+      "count": 14
     },
     {
-      "name": "奖励6",
-      "url": "jp_common.png"
+      "name": "浴花澡巾<br/>牙刷套盒",
+      "url": "jp_common.png",
+      "count": 15
+    }, 
+    {
+      "name": "小皮筋一盒<br/>湿纸巾<br/>挂件",
+      "url": "jp_common.png",
+      "count": 79
     }
   ]
 }

@@ -82,6 +82,7 @@
 .eggFrenzy_sec21 ul>li {
     float: left;
     width: 12.5%;
+    position: relative;
 }
 .eggFrenzy_sec21_con {
     width: 92%;
@@ -96,6 +97,16 @@
 .eggFrenzy_sec21_d img {
     width: 100%;
     display: block;
+}
+.remain_count{
+    width: 80px;
+    text-align: center;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 3px;
+    left: calc(50% - 40px);
+    top: 0px;
 }
 .eggFrenzy_sec21_p {
     font-size: 18px;

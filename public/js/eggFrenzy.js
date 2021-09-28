@@ -29,10 +29,25 @@
             if (count == 0) {
                 //业务逻辑处理
                 clearInterval(timer); //停止动画
+                var rewardProbability = [1, 5, 10, 15, 20, 20, 20];
+                rewardProbability = rewardProbability.slice(0, prizeItemList.length)
+                for (var i = 0; i <= prizeItemList.length - 1; i++) {
+                    var rewardRemainCount = localStorage.getItem('reward_remain_' + i);
+                    if(rewardRemainCount === null) {
+                        localStorage.setItem('reward_remain_' + i, prizeItemList[i].count)
+                    }
+                    rewardRemainCount = localStorage.getItem('reward_remain_' + i);
+                    // 数量为 0 后，概率调整到 0 
+                    if(rewardRemainCount <= 0) {
+                        rewardProbability[i] = 0
+                    }
+                }
+                prizeIndex = getRandomNum(rewardProbability);
+                currentRewardRemainCount = parseInt(localStorage.getItem('reward_remain_' + prizeIndex));
+                localStorage.setItem('reward_remain_' + prizeIndex, currentRewardRemainCount - 1);
 
-                prizeIndex = getRandomNum(0, prizeItemList.length - 1);
                 doc[0].src = 'public/images/egg0.png';
-            
+
                 doJinDanResult(prizeIndex);
             }
             num++;
@@ -69,10 +84,16 @@
     }
 
     //获取随机数
-    getRandomNum = function(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+    getRandomNum = function(arr) {
+        var pSum = eval(arr.join("+")); // 获取总概率区间
+        for (var i = 0; i < arr.length; i++) {
+            var random = parseInt(Math.random() * pSum); // 获取 0-总概率区间的一个随随机整数
+            if (random < arr[i]) {
+                return i; //如果在当前的概率范围内,得到的就是当前概率
+            } else {
+                pSum -= arr[i]; //否则减去当前的概率范围,进入下一轮循环
+            }
+        }
     }
 
     //是否禁用页面滚动（包括移动端）

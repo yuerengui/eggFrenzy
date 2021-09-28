@@ -276,13 +276,13 @@
     top: -10px;
 } 
 .pop-cj .close::before{
-    width: 50px;
+    width: 60px;
     display: inline-block;
     text-align: center;
-    line-height: 30px;
+    line-height: 50px;
     border-radius: 5px;
     color: black;
-    height: 30px;
+    height: 50px;
     content: "关闭";
     background: rgba(255, 255, 255, 0.7);
 }

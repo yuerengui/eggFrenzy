@@ -47,48 +47,6 @@
                 $('.eggFrenzy_sec12_egg1 ul li').on('click',function(){
                     e.Init($(this));
                 });
-
-                setTimeout(() => {
-                    // 滚动
-                    var temp1 = $(".eggFrenzy_sec21_con");
-                    var temp2 = $(".eggFrenzy_sec21_con ul");
-                    temp1.height(temp2.height());
-                    var lenth0 = temp1.width();
-                    var lenth1 = temp2.children("li").length;
-                    var width1 = temp2.children("li").width();
-                    var width2 = lenth1 * width1;
-                    var width3 = (lenth1 - 4) * width1;
-                    //产品左右滑动
-                    var timer = setInterval(setTimerM, 1000 * 4);
-
-                    function setTimerM() {
-                        changeSite();
-                    }
-
-                    temp2.mouseover(function() {
-                        clearInterval(timer);
-                    });
-                    temp2.mouseleave(function() {
-                        timer = setInterval(setTimerM, 1000 * 4);
-
-                    });
-
-                    function changeSite() {
-                        var sub01 = temp2.css('left');
-                        var sub02 = sub01.substring(0, sub01.length - 2);
-                        if (!temp2.is(":animated")) {
-                            if (sub02 <= -width3) {
-                                temp2.animate({
-                                    left: '0px'
-                                }, 1000);
-                            } else {
-                                temp2.animate({
-                                    left: '-=' + width1
-                                }, 1000);
-                            }
-                        }
-                    }
-                }, 500)
             })
         });
     </script>
@@ -105,9 +63,9 @@
             </div>
             <div class="eggFrenzy_sec322">
                 <!-- <p class="egg-font1">努力了一年，领个红包犒劳一下自己吧~</p> -->
-                <p class="egg-font1">购物满200即可参与抽奖，参与活动即有机会获得<span class="egg-_red">丰厚奖品</span></p>
+                <p class="egg-font1">购物满300即可参与抽奖，参与活动即有机会获得<span class="egg-_red">丰厚奖品</span></p>
                 <p class="egg-font2" style="color:red;">此活动为100%中奖</p>
-                <!-- <p class="egg-font1 egg-list-on-description"></p> -->
+                <p class="egg-font1 egg-list-on-description"></p>
                 <!-- <p class="egg-font1">重要声明：<br>
                     1、实物类奖品将在活动结束后5-10个工作日安排发货，请耐心等待。<br>
                     2、优惠券类奖品的使用规则详见每个优惠券的介绍页。<br>
@@ -131,25 +89,17 @@
                 </ul>
                 <div class="clear"></div>
             </div>
-        </div>
-        <p class="text_center eggFrenzy_sec11" style="padding: 10px 0px;"><span class="eggeggFrenzy_sec1_tips">免费抽奖</p>
-    </section>
-    <section id="eggFrenzy_sec2">
-        <div class="eggFrenzy_sec21">
-            <img class="eggFrenzy_sec21_title float_left" src="public/images/jp.png">
-            <div class="float_left eggFrenzy_sec21_con">
-                <ul class="egg-list-on-content">
+            <div class="eggFrenzy_sec12_egg1">
+                <ul class="float_left">
+                    <li class="action"><img src="public/images/egg0.png"></li>
+                    <li class="action"><img src="public/images/egg0.png"></li>
+                    <li class="action"><img src="public/images/egg0.png"></li>
+                    <li class="action"><img src="public/images/egg0.png"></li>
                 </ul>
                 <div class="clear"></div>
-                
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div class="eggFrenzy_sec22">
-            <div class="eggFrenzy_sec22-d1">
-                <div class="eggFrenzy_sec22-d2"></div>
             </div>
         </div>
+        <p class="text_center eggFrenzy_sec11" style="padding: 10px 0px;"><span class="eggeggFrenzy_sec1_tips">免费抽奖</p>
     </section>
 </body>
 </html>

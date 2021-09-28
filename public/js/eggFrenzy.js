@@ -42,6 +42,14 @@
                         rewardProbability[i] = 0
                     }
                 }
+                var totalProbability = 0;
+                for (var i in rewardProbability) {
+                    totalProbability += rewardProbability[i];
+                }
+                if (totalProbability <= 0) {
+                    alert('奖品已经抽完了，请关注下次活动..')
+                    return false;
+                }
                 prizeIndex = getRandomNum(rewardProbability);
                 currentRewardRemainCount = parseInt(localStorage.getItem('reward_remain_' + prizeIndex));
                 localStorage.setItem('reward_remain_' + prizeIndex, currentRewardRemainCount - 1);

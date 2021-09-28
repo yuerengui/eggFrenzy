@@ -32,13 +32,13 @@
                 var rewardProbability = [0.5, 1, 1.5, 2, 5, 10, 80];
                 rewardProbability = rewardProbability.slice(0, prizeItemList.length)
                 for (var i = 0; i <= prizeItemList.length - 1; i++) {
-                    var rewardRemainCount = localStorage.getItem('reward_remain_' + i);
-                    if(rewardRemainCount === null) {
-                        localStorage.setItem('reward_remain_' + i, prizeItemList[i].count)
+                    var rewardUsedCount = localStorage.getItem('reward_used_' + i);
+                    if (rewardUsedCount === null) {
+                        localStorage.setItem('reward_used_' + i, 0)
                     }
-                    rewardRemainCount = localStorage.getItem('reward_remain_' + i);
+                    rewardUsedCount = localStorage.getItem('reward_used_' + i);
                     // 数量为 0 后，概率调整到 0 
-                    if(rewardRemainCount <= 0) {
+                    if (rewardUsedCount >= prizeItemList[i].count) {
                         rewardProbability[i] = 0
                     }
                 }
@@ -51,8 +51,8 @@
                     return false;
                 }
                 prizeIndex = getRandomNum(rewardProbability);
-                currentRewardRemainCount = parseInt(localStorage.getItem('reward_remain_' + prizeIndex));
-                localStorage.setItem('reward_remain_' + prizeIndex, currentRewardRemainCount - 1);
+                currentRewardUsedCount = parseInt(localStorage.getItem('reward_used_' + prizeIndex));
+                localStorage.setItem('reward_used_' + prizeIndex, currentRewardUsedCount + 1);
 
                 doc[0].src = 'public/images/egg0.png';
 

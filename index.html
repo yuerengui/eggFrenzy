@@ -28,9 +28,9 @@
                 var rewardsDescriptionHtml = ''
                 var rewardsContentHtml = ''
                 $.each(rewardsList, function(index, item) {
-                    var rewardRemainCount = localStorage.getItem('reward_remain_' + index);
-                    if(rewardRemainCount === null) {
-                        localStorage.setItem('reward_remain_' + index, item.count)
+                    var rewardUsedCount = localStorage.getItem('reward_used_' + index);
+                    if(rewardUsedCount === null) {
+                        localStorage.setItem('reward_used_' + index, 0)
                     }
                     rewardsDescriptionHtml+= `<span class="egg-_red">${item.highlight}: </span>${item.name}<br/>`
                     rewardsContentHtml += 
